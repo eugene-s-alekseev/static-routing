@@ -16,16 +16,7 @@ RSS_FEEDS = {
 def get_news(publication="bbc"):
     feed = feedparser.parse(RSS_FEEDS[publication])
     first_article = feed["entries"][0]
-    return """
-    <html>
-    <body>
-        <h1>Headlines</h1>
-        <b>{title}</b></br>
-        <i>{published}</i></br>
-        <p>{summary}</p></br>
-    </body>
-    </html>
-    """.format(title=first_article.get("title"), published=first_article.get("published"), summary=first_article.get("summary"))
+    return flask.render_template("home.html")
 
 
 if __name__ == "__main__":
